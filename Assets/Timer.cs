@@ -3,47 +3,48 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-	/// <summary>
-	/// Gets or sets the reference to the alert object.
-	/// </summary>
-	/// <value>The alert object.</value>
-	public GameObject alertObject { get; set; }
+    /// <summary>
+    /// Gets or sets the reference to the alert object.
+    /// </summary>
+    /// <value>The alert object.</value>
+    public GameObject alertObject;
 
-	private GUIText timerGuiText;
+    private TextMesh timerText;
 
-	/// <summary>
-	/// Initialises this timer.
-	/// </summary>
-	void Start()
-	{
-		timerGuiText = GetComponent<GUIText>(gameObject);
-		InvokeRepeating("ReduceTime", 1, 1);
-	}
+    /// <summary>
+    /// Initialises this timer.
+    /// </summary>
+    void Start()
+    {
+        timerText = gameObject.GetComponent<TextMesh>();
+        InvokeRepeating("ReduceTime", 1, 1f);
+    }
 
-	/// <summary>
-	/// Reduces the time.
-	/// </summary>
-	void ReduceTime()
-	{
-		int currentTime = int.Parse(timerGuiText.text);
+    /// <summary>
+    /// Reduces the time.
+    /// </summary>
+    void ReduceTime()
+    {
+        int currentTime = int.Parse(timerText.text);
 		
-		if (currentTime == 1)
-		{
-			Time.timeScale = 0;
-			Instantiate(alertObject, new Vector3(0.5f, 0.5f, 0), transform.rotation);
-			GetComponent<AudioSource>().Play();
-			GameObject.Find("Score Icon").GetComponent<AudioSource>().Stop();
-		}
+        if (currentTime == 1)
+        {
+            Time.timeScale = 0;
+            Instantiate(alertObject, new Vector3(0.5f, 0.5f, 0), transform.rotation);
+            // TODO: Add audio
+            //GetComponent<AudioSource>().Play();
+            //GameObject.Find("Score Text").GetComponent<AudioSource>().Stop();
+        }
 
-		timerGuiText.text = (currentTime - 1).ToString();
-	}
+        timerText.text = (currentTime - 1).ToString();
+    }
 
-	/// <summary>
-	/// Update this timer.
-	/// </summary>
-	void Update()
-	{
-		Scene currentScene = SceneManager.GetActiveScene();
-		SceneManager.LoadScene(currentScene.buildIndex);
-	}
+    /// <summary>
+    /// Reload this timer.
+    /// </summary>
+    void Reload()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
 }

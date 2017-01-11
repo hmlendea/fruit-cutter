@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Configuration;
 
 public class InputManager : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class InputManager : MonoBehaviour
     private GameObject lineObject;
     private LineRenderer lineRenderer;
 
-    private Material lineRendererMaterial = new Material(Shader.Find("Mobile/Particles/Additive"));
     private int i = 0;
 
     public InputManager()
@@ -23,6 +23,8 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Start()
     {
+        Material lineRendererMaterial = new Material(Shader.Find("Mobile/Particles/Additive"));
+        
         lineObject = new GameObject("Line");
         lineObject.AddComponent<LineRenderer>();
 
@@ -43,34 +45,30 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.GetMouseButton(0))
         {
-            Touch touch = Input.GetTouch(0);
+            lineRenderer.numPositions = i + 1;
 
-            if (touch.phase == TouchPhase.Moved)
+            Vector3 mPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15);
+            lineRenderer.SetPosition(i, Camera.main.ScreenToWorldPoint(mPosition));
+
+            i += 1;
+
+            BoxCollider boxCollider = lineObject.AddComponent<BoxCollider>();
+            boxCollider.transform.position = lineRenderer.transform.position;
+            boxCollider.size = new Vector3(0.1f, 0.1f, 0.1f);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            lineRenderer.numPositions = 0;
+            i = 0;
+
+            BoxCollider[] boxColliders = lineObject.GetComponents<BoxCollider>();
+
+            foreach (BoxCollider boxCollider in boxColliders)
             {
-                lineRenderer.numPositions = i + 1;
-
-                Vector3 mPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 15);
-                lineRenderer.SetPosition(i, Camera.main.ScreenToWorldPoint(mPosition));
-
-                i += 1;
-
-                BoxCollider boxCollider = lineObject.AddComponent<BoxCollider>();
-                boxCollider.transform.position = lineRenderer.transform.position;
-                boxCollider.size = new Vector3(0.1f, 0.1f, 0.1f);
-            }
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                lineRenderer.numPositions = 0;
-
-                BoxCollider[] boxColliders = lineObject.GetComponents<BoxCollider>();
-
-                foreach (BoxCollider boxCollider in boxColliders)
-                {
-                    Destroy(boxCollider);
-                }
+                Destroy(boxCollider);
             }
         }
     }

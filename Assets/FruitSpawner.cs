@@ -19,18 +19,12 @@ public class FruitSpawner : MonoBehaviour
     {
         for (byte i = 0; i < 4; i++)
         {
-            GameObject fruit = Instantiate(appleObject,
-                                   new Vector3(Random.Range(10, 30), Random.Range(-25, -35), -32));
+            GameObject fruit = Instantiate(
+                                   appleObject,
+                                   new Vector3(Random.Range(10, 30), Random.Range(-25, -35), -32),
+                                   Quaternion.identity) as GameObject;
         
-            GetComponent<Rigidbody>(fruit).AddForce(throwForce, ForceMode.Impulse);
+            fruit.GetComponent<Rigidbody>().AddForce(throwForce, ForceMode.Impulse);
         }
-    }
-
-    /// <summary>
-    /// Update this fruit spawner.
-    /// </summary>
-    void Update()
-    {
-		
     }
 }

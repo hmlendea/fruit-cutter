@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 10bc9d4e2f3cd444f99f3c09d3934c23
-timeCreated: 1484167929
+timeCreated: 1484171668
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - splashObject: {fileID: 1109565843930498, guid: 3d20fca2d4a3c4e83aaf599f0ad9c851,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

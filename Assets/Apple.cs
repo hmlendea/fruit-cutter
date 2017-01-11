@@ -1,25 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using System.Runtime.InteropServices;
 
 public class Apple : MonoBehaviour
 {
     [SerializeField]
     private GameObject splashObject;
 
-    private GUIText scoreGuiText;
-
-    private Vector3 randomPos = new Vector3(
-                                    Random.Range(-1, 1),
-                                    Random.Range(0.3f, 0.7f),
-                                    Random.Range(-6.5f, -7.5f));
+    private TextMesh scoreText;
 
     /// <summary>
     /// Initialise this apple.
     /// </summary>
     void Start()
     {
-        scoreGuiText = GetComponent<GUIText>(GameObject.Find("Score Text"));
+        scoreText = GameObject.Find("Score Text").GetComponent<TextMesh>();
     }
 
     /// <summary>
@@ -41,13 +34,19 @@ public class Apple : MonoBehaviour
     {
         if (other.gameObject.name == "Line")
         {
-            Camera.main.GetComponent<AudioSource>().Play();
+            // TODO: Add audio
+            //Camera.main.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
 
+            Vector3 randomPos = new Vector3(
+                                    Random.Range(-1, 1),
+                                    Random.Range(0.3f, 0.7f),
+                                    Random.Range(-6.5f, -7.5f));
+            
             Instantiate(splashObject, randomPos, transform.rotation);
 
-            int currentScore = int.Parse(scoreGuiText.text);
-            scoreGuiText.text = (currentScore + 1).ToString();
+            int currentScore = int.Parse(scoreText.text);
+            scoreText.text = (currentScore + 1).ToString();
         }
     }
 }
