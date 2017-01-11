@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
         lineRenderer.startWidth = 0.3f;
 
         lineRenderer.endColor = Colour2;
-        lineRenderer.endWidth = 0;
+        lineRenderer.endWidth = 0.05f;
 
         lineRenderer.numPositions = 0;
     }
