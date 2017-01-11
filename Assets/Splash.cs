@@ -12,7 +12,7 @@ public class Splash : MonoBehaviour
     {
         randomAlpha = new Color(1, 1, 1, Random.Range(0.3f, 0.5f));
         gameObject.GetComponent<Renderer>().material.color = randomAlpha;
-        InvokeRepeating("ReduceAlpha", 0.3f, 0.3f);
+        InvokeRepeating("ReduceAlpha", 0.05f, 0.1f);
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public class Splash : MonoBehaviour
     {
         currentAlpha = gameObject.GetComponent<Renderer>().material.color.a;
 
-        if (gameObject.GetComponent<Renderer>().material.color.a <= 0.1f)
+        if (gameObject.GetComponent<Renderer>().material.color.a <= 0.01f)
         {
             Destroy(gameObject);
         }
