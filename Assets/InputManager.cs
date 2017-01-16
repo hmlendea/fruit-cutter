@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour
             boxCollider.size = new Vector3(0.2f, 0.2f, 10f);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || lineRenderer.numPositions > 20)
         {
             lineRenderer.numPositions = 0;
             i = 0;
