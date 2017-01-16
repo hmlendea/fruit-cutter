@@ -44,6 +44,9 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (Input.GetMouseButton(0))
         {
             lineRenderer.numPositions = i + 1;
