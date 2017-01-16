@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FruitSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject appleObject;
@@ -33,7 +33,7 @@ public class FruitSpawner : MonoBehaviour
 
         GameObject burger = Instantiate(
                                 burgerObject,
-                                new Vector3(Random.Range(0, 10), Random.Range(-25, -35), 5),
+                                new Vector3(Random.Range(0, 10), Random.Range(-25, -35), 0),
                                 Quaternion.identity) as GameObject;
 
         burger.GetComponent<Rigidbody>().AddForce(burgerThrowForce, ForceMode.Impulse);

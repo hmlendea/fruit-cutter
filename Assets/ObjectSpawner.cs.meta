@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: 734440ffeb8df4587b9931bd86e05a33
-timeCreated: 1484583246
+guid: 15331dcb4e5304f5583bcfb52336ae43
+timeCreated: 1484585245
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - appleObject: {fileID: 1878348987923684, guid: 48d54e624b4c04e6d9973b69adbffec5,
+      type: 2}
+  - burgerObject: {fileID: 1469096741295936, guid: 43eaf981748074a7891b9a71b69ad489,
       type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

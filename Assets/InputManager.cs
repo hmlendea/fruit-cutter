@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Configuration;
 
 public class InputManager : MonoBehaviour
 {
@@ -56,7 +55,7 @@ public class InputManager : MonoBehaviour
 
             BoxCollider boxCollider = lineObject.AddComponent<BoxCollider>();
             boxCollider.transform.position = lineRenderer.transform.position;
-            boxCollider.size = new Vector3(0.1f, 0.1f, 0.1f);
+            boxCollider.size = new Vector3(0.2f, 0.2f, 10f);
         }
 
         if (Input.GetMouseButtonUp(0))
