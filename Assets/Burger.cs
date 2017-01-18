@@ -5,14 +5,14 @@ public class Burger : MonoBehaviour
     [SerializeField]
     private GameObject splashObject;
 
-    private TextMesh scoreText;
+    private TextMesh burgersText;
 
     /// <summary>
     /// Initialise this apple.
     /// </summary>
     void Start()
     {
-        scoreText = GameObject.Find("Score Text").GetComponent<TextMesh>();
+        burgersText = GameObject.Find("Burgers Text").GetComponent<TextMesh>();
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public class Burger : MonoBehaviour
 
             Instantiate(splashObject, randomPos, transform.rotation);
 
-            int currentScore = int.Parse(scoreText.text);
-            scoreText.text = (currentScore - 5).ToString();
+            int currentBurgers = int.Parse(burgersText.text);
+            burgersText.text = (currentBurgers + 1).ToString();
         }
     }
 }

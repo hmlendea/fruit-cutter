@@ -5,14 +5,14 @@ public class Apple : MonoBehaviour
     [SerializeField]
     private GameObject splashObject;
 
-    private TextMesh scoreText;
+    private TextMesh applesText;
 
     /// <summary>
     /// Initialise this apple.
     /// </summary>
     void Start()
     {
-        scoreText = GameObject.Find("Score Text").GetComponent<TextMesh>();
+        applesText = GameObject.Find("Apples Text").GetComponent<TextMesh>();
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ public class Apple : MonoBehaviour
             
             Instantiate(splashObject, randomPos, transform.rotation);
 
-            int currentScore = int.Parse(scoreText.text);
-            scoreText.text = (currentScore + 1).ToString();
+            int currentApples = int.Parse(applesText.text);
+            applesText.text = (currentApples + 1).ToString();
         }
     }
 }

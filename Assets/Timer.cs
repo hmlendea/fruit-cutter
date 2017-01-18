@@ -10,13 +10,16 @@ public class Timer : MonoBehaviour
     public GameObject alertObject;
 
     private TextMesh timerText;
+    private TextMesh burgersText;
 
     /// <summary>
     /// Initialises this timer.
     /// </summary>
     void Start()
     {
-        timerText = gameObject.GetComponent<TextMesh>();
+        timerText = GameObject.Find("Timer Text").GetComponent<TextMesh>();
+        burgersText = GameObject.Find("Burgers Text").GetComponent<TextMesh>();
+
         InvokeRepeating("ReduceTime", 1, 1f);
     }
 
@@ -26,8 +29,9 @@ public class Timer : MonoBehaviour
     void ReduceTime()
     {
         int currentTime = int.Parse(timerText.text);
-		
-        if (currentTime == 1)
+        int currentBurgers = int.Parse(burgersText.text);
+
+        if (currentTime == 1 || currentBurgers >= 3)
         {
             Time.timeScale = 0;
             Instantiate(alertObject, new Vector3(0.5f, 0.5f, 0), transform.rotation);
