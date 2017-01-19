@@ -2,6 +2,8 @@
 
 public class Apple : MonoBehaviour
 {
+    public bool Cut { get; set; }
+
     [SerializeField]
     private GameObject splashObject;
 
@@ -32,8 +34,15 @@ public class Apple : MonoBehaviour
     /// <param name="other">Other.</param>
     void OnCollisionEnter(Collision other)
     {
+        if (Cut)
+        {
+            return;
+        }
+
         if (other.gameObject.name == "Line")
         {
+            Cut = true;
+            
             // TODO: Add audio
             //Camera.main.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
