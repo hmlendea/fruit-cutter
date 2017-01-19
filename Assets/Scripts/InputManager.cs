@@ -19,6 +19,9 @@ public class InputManager : MonoBehaviour
 
     private int i = 0;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InputManager"/> class.
+    /// </summary>
     public InputManager()
     {
         StartColour = Color.yellow;
@@ -52,9 +55,11 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Prevent line drawing when the game is over
         if (Time.timeScale == 0)
             return;
 
+        // Left Mouse Button is down
         if (Input.GetMouseButton(0))
         {
             lineRenderer.numPositions = i + 1;
@@ -69,9 +74,11 @@ public class InputManager : MonoBehaviour
             boxCollider.size = new Vector3(0.2f, 0.2f, 10f);
         }
 
+        // Left Mouse Button is up or line length exceeded
         if (Input.GetMouseButtonUp(0) || lineRenderer.numPositions > 20)
         {
             lineRenderer.numPositions = 0;
+
             i = 0;
 
             BoxCollider[] boxColliders = lineObject.GetComponents<BoxCollider>();
