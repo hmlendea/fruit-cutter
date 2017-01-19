@@ -2,6 +2,10 @@
 
 public class Burger : MonoBehaviour
 {
+    /// <summary>
+    /// Gets or sets a value indicating whether this <see cref="Burger"/> is cut.
+    /// </summary>
+    /// <value><c>true</c> if cut; otherwise, <c>false</c>.</value>
     public bool Cut { get; set; }
 
     [SerializeField]
@@ -41,6 +45,8 @@ public class Burger : MonoBehaviour
 
         if (other.gameObject.name == "Line")
         {
+            Cut = true;
+
             // TODO: Add audio
             //Camera.main.GetComponent<AudioSource>().Play();
             Destroy(gameObject);

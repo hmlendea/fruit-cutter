@@ -16,10 +16,13 @@ public class ObjectSpawner : MonoBehaviour
     /// </summary>
     void Start()
     {
-        InvokeRepeating("SpawnObject", 0.5f, 6);
+        InvokeRepeating("SpawnObjects", 0.5f, 6);
     }
 
-    void SpawnObject()
+    /// <summary>
+    /// Spawns the objects.
+    /// </summary>
+    void SpawnObjects()
     {
         // Spawn between 3 and 6 apples
         for (int i = 0; i < Random.Range(3, 6); i++)
@@ -27,13 +30,16 @@ public class ObjectSpawner : MonoBehaviour
             SpawnApple();
         }
 
-        // 25% chance to spawn a burger
-        if (1 == Random.Range(1, 4))
+        // 33.3% chance to spawn a burger
+        if (1 == Random.Range(1, 3))
         {
             SpawnBurger();
         }
     }
 
+    /// <summary>
+    /// Spawns an apple.
+    /// </summary>
     void SpawnApple()
     {
         GameObject fruit = Instantiate(
@@ -44,6 +50,9 @@ public class ObjectSpawner : MonoBehaviour
         fruit.GetComponent<Rigidbody>().AddForce(appleThrowForce, ForceMode.Impulse);
     }
 
+    /// <summary>
+    /// Spawns a burger.
+    /// </summary>
     void SpawnBurger()
     {
         GameObject burger = Instantiate(

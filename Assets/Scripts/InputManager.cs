@@ -2,9 +2,17 @@
 
 public class InputManager : MonoBehaviour
 {
-    public Color Colour1 { get; set; }
+    /// <summary>
+    /// Gets or sets the start colour.
+    /// </summary>
+    /// <value>The start colour.</value>
+    public Color StartColour { get; set; }
 
-    public Color Colour2 { get; set; }
+    /// <summary>
+    /// Gets or sets the end colour.
+    /// </summary>
+    /// <value>The end colour.</value>
+    public Color EndColour { get; set; }
 
     private GameObject lineObject;
     private LineRenderer lineRenderer;
@@ -13,8 +21,8 @@ public class InputManager : MonoBehaviour
 
     public InputManager()
     {
-        Colour1 = Color.yellow;
-        Colour2 = Color.red;
+        StartColour = Color.yellow;
+        EndColour = Color.red;
     }
 
     /// <summary>
@@ -30,10 +38,10 @@ public class InputManager : MonoBehaviour
         lineRenderer = lineObject.GetComponent<LineRenderer>();
         lineRenderer.material = lineRendererMaterial;
 
-        lineRenderer.startColor = Colour1;
+        lineRenderer.startColor = StartColour;
         lineRenderer.startWidth = 0.3f;
 
-        lineRenderer.endColor = Colour2;
+        lineRenderer.endColor = EndColour;
         lineRenderer.endWidth = 0.05f;
 
         lineRenderer.numPositions = 0;

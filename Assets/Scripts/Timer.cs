@@ -20,7 +20,16 @@ public class Timer : MonoBehaviour
         timerText = GameObject.Find("Timer Text").GetComponent<TextMesh>();
         burgersText = GameObject.Find("Burgers Text").GetComponent<TextMesh>();
 
-        InvokeRepeating("ReduceTime", 1, 1f);
+        InvokeRepeating("Tick", 1, 1f);
+    }
+
+    /// <summary>
+    /// Is called every tick.
+    /// </summary>
+    void Tick()
+    {
+        ReduceTime();
+        CheckForGameOver();
     }
 
     /// <summary>
@@ -29,18 +38,35 @@ public class Timer : MonoBehaviour
     void ReduceTime()
     {
         int currentTime = int.Parse(timerText.text);
+
+        timerText.text = (currentTime - 1).ToString();
+    }
+
+    /// <summary>
+    /// Checks for game over.
+    /// </summary>
+    void CheckForGameOver()
+    {
+        int currentTime = int.Parse(timerText.text);
         int currentBurgers = int.Parse(burgersText.text);
 
         if (currentTime == 1 || currentBurgers >= 3)
         {
-            Time.timeScale = 0;
-            Instantiate(alertObject, new Vector3(0.5f, 0.5f, 0), transform.rotation);
-            // TODO: Add audio
-            //GetComponent<AudioSource>().Play();
-            //GameObject.Find("Score Text").GetComponent<AudioSource>().Stop();
+            EndGame();
         }
+    }
 
-        timerText.text = (currentTime - 1).ToString();
+    /// <summary>
+    /// Ends the game.
+    /// </summary>
+    void EndGame()
+    {
+        Time.timeScale = 0;
+        Instantiate(alertObject, new Vector3(0.5f, 0.5f, 0), transform.rotation);
+
+        // TODO: Add audio
+        //GetComponent<AudioSource>().Play();
+        //GameObject.Find("Score Text").GetComponent<AudioSource>().Stop();
     }
 
     /// <summary>

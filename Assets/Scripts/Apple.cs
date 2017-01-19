@@ -2,6 +2,10 @@
 
 public class Apple : MonoBehaviour
 {
+    /// <summary>
+    /// Gets or sets a value indicating whether this <see cref="Apple"/> is cut.
+    /// </summary>
+    /// <value><c>true</c> if cut; otherwise, <c>false</c>.</value>
     public bool Cut { get; set; }
 
     [SerializeField]
