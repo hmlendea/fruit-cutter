@@ -21,16 +21,31 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnObject()
     {
-        for (byte i = 0; i < 4; i++)
+        // Spawn between 3 and 6 apples
+        for (int i = 0; i < Random.Range(3, 6); i++)
         {
-            GameObject fruit = Instantiate(
-                                   appleObject,
-                                   new Vector3(Random.Range(10, 30), Random.Range(-25, -35), -32),
-                                   Quaternion.identity) as GameObject;
-
-            fruit.GetComponent<Rigidbody>().AddForce(appleThrowForce, ForceMode.Impulse);
+            SpawnApple();
         }
 
+        // 25% chance to spawn a burger
+        if (1 == Random.Range(1, 4))
+        {
+            SpawnBurger();
+        }
+    }
+
+    void SpawnApple()
+    {
+        GameObject fruit = Instantiate(
+                               appleObject,
+                               new Vector3(Random.Range(10, 30), Random.Range(-25, -35), -32),
+                               Quaternion.identity) as GameObject;
+
+        fruit.GetComponent<Rigidbody>().AddForce(appleThrowForce, ForceMode.Impulse);
+    }
+
+    void SpawnBurger()
+    {
         GameObject burger = Instantiate(
                                 burgerObject,
                                 new Vector3(Random.Range(0, 10), Random.Range(-25, -35), 0),

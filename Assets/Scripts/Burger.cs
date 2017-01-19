@@ -32,7 +32,7 @@ public class Burger : MonoBehaviour
     /// <param name="other">Other.</param>
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Line")
+        if (this != null && other.gameObject.name == "Line")
         {
             // TODO: Add audio
             //Camera.main.GetComponent<AudioSource>().Play();
