@@ -1,3 +1,7 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+This was a homework project. I have no intention of finishing or continuing this project, as it was certainly one that I didn't like very much.
+
 # About
 
 FruitCutter is a very basic game made in Unity, that started as a university project. It is inspired from the popular mobile game "Fruit Ninja"
